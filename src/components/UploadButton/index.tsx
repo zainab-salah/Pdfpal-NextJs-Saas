@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
-import { Button } from "./ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
+import { Button } from "../ui/button";
+
+
+import UploadDropzone from "./UploadDropzone";
 
 const UploadButton = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -17,11 +20,12 @@ const UploadButton = () => {
         <Button>Upload PDF</Button>
       </DialogTrigger>
       <DialogContent>
-        <div className="flex flex-col gap-4">
+        <UploadDropzone />
+        {/* <div className="flex flex-col gap-4">
           <h2 className="text-2xl font-semibold">Upload PDF</h2>
           <input type="file" />
           <Button onClick={() => setOpen(false)}>Upload</Button>
-        </div>
+        </div> */}
       </DialogContent>
     </Dialog>
   );
