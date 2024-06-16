@@ -29,7 +29,7 @@ const page = async ({ params }: PageProps) => {
         <div className="flex-1 xl:flex">
           <div className="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6">
             {/* Main area */}
-            <PdfView url={file.url} />
+            <PdfView url={`https://utfs.io/f/${file.key}`} />
           </div>
         </div>
 
