@@ -1,4 +1,4 @@
-import { Cloud, Loader2 } from "lucide-react";
+import { Cloud, File, Loader2 } from "lucide-react";
 import { useState } from "react";
 import Dropzone from "react-dropzone";
 import { Progress } from "../ui/progress";
@@ -14,6 +14,7 @@ const UploadDropzone = () => {
   const { startUpload } = useUploadThing("fileUploader");
 
   const { toast } = useToast();
+
   const { mutate: FileUpload } = trpc.getFile.useMutation({
     onSuccess: (file) => {
       // redirect to file page
@@ -48,10 +49,12 @@ const UploadDropzone = () => {
     <>
       <Dropzone
         multiple={false}
+  
         onDrop={async (acceptedFile) => {
           setIsUploading(true);
 
           const progressInterval = startSimulatedProgress();
+
           //handle file
           const res = await startUpload(acceptedFile);
 
@@ -98,6 +101,7 @@ const UploadDropzone = () => {
                     drag and drop
                   </p>
                   <p className="text-xs text-zinc-500">
+                    PDF (up to 4MB)
                     {/* PDF (up to {isSubscribed ? "16" : "4"}MB) */}
                   </p>
                 </div>
@@ -108,7 +112,7 @@ const UploadDropzone = () => {
                  outline-zinc-200 divide-x divide-zinc-200"
                   >
                     <div className="px-3 py-2 h-full grid place-items-center">
-                      {/* <File className='h-4 w-4 text-blue-500' /> */}
+                      <File className="h-4 w-4 text-blue-500" />
                     </div>
                     <div className="px-3 py-2 h-full text-sm truncate">
                       {acceptedFiles[0].name}
