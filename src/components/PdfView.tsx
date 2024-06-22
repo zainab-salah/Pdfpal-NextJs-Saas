@@ -1,5 +1,11 @@
 "use client";
-import { ChevronDown, ChevronUp, Loader2, RotateCw, Search } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronUp,
+  Loader2,
+  RotateCw,
+  Search,
+} from "lucide-react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useResizeDetector } from "react-resize-detector";
 import "react-pdf/dist/Page/AnnotationLayer.css";
@@ -19,6 +25,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import SimpleBar from "simplebar-react";
+import PdfFullScreen from "./PdfFullScreen";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 type PdfViewProps = {
@@ -154,9 +161,14 @@ const PdfView = ({ url }: PdfViewProps) => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Button aria-label="rotate 90 degrees" onClick={() => setRotation((prev) => prev + 90)} variant="ghost">
-           <RotateCw className="h-4 w-4" />
+          <Button
+            aria-label="rotate 90 degrees"
+            onClick={() => setRotation((prev) => prev + 90)}
+            variant="ghost"
+          >
+            <RotateCw className="h-4 w-4" />
           </Button>
+          <PdfFullScreen fileUrl={url} />
         </div>
       </div>
 
