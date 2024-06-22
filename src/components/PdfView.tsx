@@ -26,6 +26,7 @@ import {
 } from "./ui/dropdown-menu";
 import SimpleBar from "simplebar-react";
 import PdfFullScreen from "./PdfFullScreen";
+import { set } from "date-fns";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 type PdfViewProps = {
@@ -72,6 +73,7 @@ const PdfView = ({ url }: PdfViewProps) => {
             disabled={curPage <= 1}
             onClick={() => {
               setCurPage((prev) => (prev - 1 > 1 ? prev - 1 : 1));
+              setValue("page", String(curPage - 1));
             }}
           >
             <ChevronDown className="h-4 w-4" />
@@ -98,6 +100,7 @@ const PdfView = ({ url }: PdfViewProps) => {
             disabled={curPage === numPage || numPage === undefined}
             onClick={() => {
               setCurPage((prev) => (prev + 1 > numPage! ? numPage! : prev + 1));
+              setValue("page", String(curPage + 1));
             }}
             variant="ghost"
             aria-label="next page"

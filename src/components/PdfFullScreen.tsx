@@ -1,4 +1,3 @@
-"use client";
 import { useState } from "react"; 
 import { Button } from "./ui/button";
 import { Expand, Loader2 } from "lucide-react";
