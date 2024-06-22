@@ -1,5 +1,5 @@
 "use client";
-import { ChevronDown, ChevronUp, Loader2, Search } from "lucide-react";
+import { ChevronDown, ChevronUp, Loader2, RotateCw, Search } from "lucide-react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useResizeDetector } from "react-resize-detector";
 import "react-pdf/dist/Page/AnnotationLayer.css";
@@ -29,6 +29,7 @@ const PdfView = ({ url }: PdfViewProps) => {
   const [numPage, setNumPage] = useState<number>();
   const [curPage, setCurPage] = useState<number>(1);
   const [zoom, setZoom] = useState<number>(1);
+  const [rotation, setRotation] = useState<number>(0);
 
   const { toast } = useToast();
 
@@ -70,7 +71,6 @@ const PdfView = ({ url }: PdfViewProps) => {
           </Button>
           <div className="flex items-center gap-1.5">
             <Input
-     
               {...register("page")}
               className={cn(
                 "w-12 h-8",
@@ -153,6 +153,10 @@ const PdfView = ({ url }: PdfViewProps) => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+
+          <Button aria-label="rotate 90 degrees" onClick={() => setRotation((prev) => prev + 90)} variant="ghost">
+           <RotateCw className="h-4 w-4" />
+          </Button>
         </div>
       </div>
 
@@ -183,6 +187,7 @@ const PdfView = ({ url }: PdfViewProps) => {
                 width={width ? width : 1}
                 scale={zoom}
                 pageNumber={curPage}
+                rotate={rotation}
               />
             </Document>
           </div>
