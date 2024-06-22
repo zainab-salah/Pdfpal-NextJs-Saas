@@ -21,11 +21,7 @@ const UploadButton = () => {
       </DialogTrigger>
       <DialogContent>
         <UploadDropzone />
-        {/* <div className="flex flex-col gap-4">
-          <h2 className="text-2xl font-semibold">Upload PDF</h2>
-          <input type="file" />
-          <Button onClick={() => setOpen(false)}>Upload</Button>
-        </div> */}
+ 
       </DialogContent>
     </Dialog>
   );

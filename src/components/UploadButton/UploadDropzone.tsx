@@ -17,13 +17,12 @@ const UploadDropzone = () => {
 
   const { mutate: FileUpload } = trpc.getFile.useMutation({
     onSuccess: (file) => {
-      // redirect to file page
       router.push(`/dashboard/${file.id}`);
     },
     retry: true,
     retryDelay: 500,
     onError: (error) => {
-      console.log(error)
+      console.log(error);
       toast({
         title: "Something went wrong",
         description: "Please try again later",
@@ -50,7 +49,6 @@ const UploadDropzone = () => {
     <>
       <Dropzone
         multiple={false}
-  
         onDrop={async (acceptedFile) => {
           setIsUploading(true);
 
@@ -124,9 +122,9 @@ const UploadDropzone = () => {
                 {isUploading ? (
                   <div className="w-full mt-4  max-w-xs mx-auto">
                     <Progress
-                    indicatorColor={
-                      uploadProgress === 100 ? "bg-yellow-500" : ""
-                    }
+                      indicatorColor={
+                        uploadProgress === 100 ? "bg-green-500" : "bg-blue-500"
+                      }
                       value={uploadProgress}
                       className="h-1 w-full bg-zinc-200  "
                     />

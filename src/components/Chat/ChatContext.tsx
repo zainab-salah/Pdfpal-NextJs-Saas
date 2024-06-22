@@ -3,25 +3,26 @@ import { useToast } from "../ui/use-toast";
 import { useMutation } from "@tanstack/react-query";
 
 type StreamResponse = {
-  message: string;
-  addMessage: () => void;
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  isLoading: boolean;
-};
+  addMessage: () => void
+  message: string
+  handleInputChange: (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => void
+  isLoading: boolean
+}
 
-export const ChatCotext = createContext({
+export const ChatContext = createContext<StreamResponse>({
   addMessage: () => {},
-  message: "",
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => {},
+  message: '',
+  handleInputChange: () => {},
   isLoading: false,
-});
-
+})
 interface ChatProviderProps {
   fileId: string;
   children: React.ReactNode;
 }
 
-export const ChatProvider = ({ fileId, children }: ChatProviderProps) => {
+ export const ChatContextProvider =({ fileId, children }: ChatProviderProps) => {
   const [message, setMessage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -46,19 +47,22 @@ export const ChatProvider = ({ fileId, children }: ChatProviderProps) => {
   const addMessage = () => {
     sendMessage({ message });
   };
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMessage(e.target.value);
-  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setMessage(e.target.value)
+  }
+
   return (
-    <ChatCotext.Provider
-      value={{
-        message,
-        addMessage,
-        handleInputChange,
-        isLoading,
-      }}
-    >
-      {children}
-    </ChatCotext.Provider>
+    <ChatContext.Provider
+    value={{
+      addMessage,
+      message,
+      handleInputChange,
+      isLoading,
+    }}>
+    {children}
+  </ChatContext.Provider>
   );
 };
