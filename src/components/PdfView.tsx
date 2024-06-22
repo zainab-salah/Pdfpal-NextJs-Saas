@@ -38,9 +38,11 @@ const PdfView = ({ url }: PdfViewProps) => {
   const [curPage, setCurPage] = useState<number>(1);
   const [zoom, setZoom] = useState<number>(1);
   const [rotation, setRotation] = useState<number>(0);
-
+  const [renderedScale, setRenderedScale] = useState<
+  number | null
+>(null)
   const { toast } = useToast();
-
+  const isLoading = renderedScale !== zoom
   const PageNumberSchema = z.object({
     page: z
       .string()
@@ -114,6 +116,7 @@ const PdfView = ({ url }: PdfViewProps) => {
             <DropdownMenuTrigger asChild>
               <Button aria-label="zoom" className="gap-1.5" variant="ghost">
                 <Search className="h-4 w-4" />
+                
                 {zoom * 100}% <ChevronDown className="h-3 w-3 opacity-50" />
               </Button>
             </DropdownMenuTrigger>
@@ -198,11 +201,30 @@ const PdfView = ({ url }: PdfViewProps) => {
               file={url}
               className="max-h-full"
             >
-              <Page
+              {isLoading && renderedScale ? (
+                <Page
+                  width={width ? width : 1}
+                  scale={zoom}
+                  pageNumber={curPage}
+                  rotate={rotation}
+                />
+              ) : null}
+
+<Page
+                className={cn(isLoading ? 'hidden' : '')}
                 width={width ? width : 1}
-                scale={zoom}
                 pageNumber={curPage}
+                scale={zoom}
                 rotate={rotation}
+                key={'@' + zoom}
+                loading={
+                  <div className='flex justify-center'>
+                    <Loader2 className='my-24 h-6 w-6 animate-spin' />
+                  </div>
+                }
+                onRenderSuccess={() =>
+                  setRenderedScale(zoom)
+                }
               />
             </Document>
           </div>
