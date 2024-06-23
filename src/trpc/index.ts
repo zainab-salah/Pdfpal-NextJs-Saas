@@ -75,7 +75,7 @@ export const appRouter = router({
       return { status: file.uploadStatus }
     }),
 
-  getFile: privateProcedure
+    getFile: privateProcedure
     .input(z.object({ key: z.string() }))
     .mutation(async ({ ctx, input }) => {
       const { userId } = ctx

@@ -1,11 +1,10 @@
 import { db } from "@/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
-
-import { getPineconeClient } from "@/lib/pinecone";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+import { pc } from "@/lib/pinecone";
 
 const f = createUploadthing();
 
@@ -32,7 +31,7 @@ export const ourFileRouter = {
 
       try {
         const response = await fetch(
-          "https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}"
+          `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`
         );
         const blob = await response.blob();
 
@@ -42,10 +41,8 @@ export const ourFileRouter = {
 
         const pagesAmt = pageLevelDocs.length;
 
-   
         // vectorize and index entire document
-        const pinecone = await getPineconeClient();
-        const pineconeIndex = pinecone.Index("pdfpall");
+        const pineconeIndex = pc.index("tester");
 
         const embeddings = new OpenAIEmbeddings({
           openAIApiKey: process.env.OPENAI_API_KEY,

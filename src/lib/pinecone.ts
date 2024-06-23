@@ -1,14 +1,19 @@
-import { PineconeClient } from '@pinecone-database/pinecone'
+import { Pinecone } from '@pinecone-database/pinecone';
 
-export const getPineconeClient = async () => {
-  const client = new PineconeClient()
+export const pc = new Pinecone({
+  apiKey: process.env.PINECONE_API_KEY!
+ 
+});
 
-  await client.init({
-    apiKey: process.env.PINECONE_API_KEY!,
-    environment: 'us-east-1',
-  
-  })
 
-  return client
-}
-
+// await pc.createIndex({
+//   name: "tester",
+//   dimension: 1536,
+//   metric: "cosine",
+//   spec: {
+//     serverless: {
+//       cloud: "aws",
+//       region: "us-east-1",
+//     },
+//   },
+// });
