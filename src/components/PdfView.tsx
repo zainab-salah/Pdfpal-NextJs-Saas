@@ -188,7 +188,7 @@ const PdfView = ({ url }: PdfViewProps) => {
                 </div>
               }
               onLoadError={(error) => {
-                console.log(error);
+               
                 toast({
                   title: "Error loading PDF",
                   description: "Please try again later",

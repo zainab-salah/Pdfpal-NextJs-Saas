@@ -37,6 +37,7 @@ interface ChatProviderProps {
           message,
         }),
       });
+     
       if (!response.ok) {
         throw new Error("Failed to send message");
       }
