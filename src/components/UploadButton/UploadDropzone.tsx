@@ -7,6 +7,7 @@ import { useToast } from "../ui/use-toast";
 import { trpc } from "@/app/_trpc/client";
 import { useRouter } from "next/navigation";
 import { useUploadThing } from "@/lib/uploadthing";
+ 
 
 const UploadDropzone = () => {
   const [isUploading, setIsUploading] = useState<boolean>(false);
@@ -23,7 +24,7 @@ const UploadDropzone = () => {
     retry: true,
     retryDelay: 500,
     onError: (error) => {
- 
+ console.log(error)
       toast({
         title: "Something went wrong",
         description: "Please try again later",

@@ -5,15 +5,4 @@ export const pc = new Pinecone({
  
 });
 
-
-// await pc.createIndex({
-//   name: "tester",
-//   dimension: 1536,
-//   metric: "cosine",
-//   spec: {
-//     serverless: {
-//       cloud: "aws",
-//       region: "us-east-1",
-//     },
-//   },
-// });
+ 
