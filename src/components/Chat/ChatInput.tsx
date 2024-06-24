@@ -30,9 +30,7 @@ const ChatInput = ({ isDisabled }: ChatInputProps) => {
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && !e.shiftKey) {
                     e.preventDefault();
-
                     addMessage();
-
                     textareaRef.current?.focus();
                   }
                 }}
@@ -41,15 +39,13 @@ const ChatInput = ({ isDisabled }: ChatInputProps) => {
               />
 
               <Button
-                disabled={isLoading || isDisabled }
+                disabled={isLoading || isDisabled}
                 className="absolute bottom-1.5 right-[8px]"
                 aria-label="send message"
                 onClick={() => {
                   addMessage();
-
                   textareaRef.current?.focus();
                 }}
-                type = "submit"
               >
                 <Send className="h-4 w-4" />
               </Button>

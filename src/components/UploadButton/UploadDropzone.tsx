@@ -23,8 +23,7 @@ const UploadDropzone = () => {
     },
     retry: true,
     retryDelay: 500,
-    onError: (error) => {
- console.log(error)
+    onError: () => {
       toast({
         title: "Something went wrong",
         description: "Please try again later",
