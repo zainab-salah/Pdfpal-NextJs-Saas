@@ -41,7 +41,7 @@ const BillingForm = ({
     })
 
   return (
-    <MaxWidthWrapper className='max-w-5xl'>
+    <MaxWidthWrapper className='max-w-5xl container'>
       <form
         className='mt-12'
         onSubmit={(e) => {
