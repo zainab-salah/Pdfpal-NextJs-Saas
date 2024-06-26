@@ -16,11 +16,29 @@ import { Loader2 } from 'lucide-react'
 import { format } from 'date-fns'
 
 interface BillingFormProps {
-  subscriptionPlan: Awaited<
-    ReturnType<typeof getUserSubscriptionPlan>
-  >
+  // subscriptionPlan: Awaited<
+  //   ReturnType<typeof getUserSubscriptionPlan>
+  // >
+  subscriptionPlan: SubscriptionPlan
 }
-
+interface SubscriptionPlan {
+  name: string;
+  slug: string;
+  quota: number;
+  pagesPerPdf: number;
+  price: {
+    amount: number;
+    priceIds: {
+      test: string;
+      production: string;
+    };
+  };
+  isSubscribed: boolean;
+  isCanceled: boolean;
+  stripeCurrentPeriodEnd: Date | null;
+  stripeSubscriptionId: string | null;
+  stripeCustomerId: string | null;
+}
 const BillingForm = ({
   subscriptionPlan,
 }: BillingFormProps) => {
@@ -41,7 +59,7 @@ const BillingForm = ({
     })
 
   return (
-    <MaxWidthWrapper className='max-w-5xl container'>
+    <MaxWidthWrapper className='max-w-5xl'>
       <form
         className='mt-12'
         onSubmit={(e) => {
@@ -53,7 +71,7 @@ const BillingForm = ({
             <CardTitle>Subscription Plan</CardTitle>
             <CardDescription>
               You are currently on the{' '}
-              <strong>{subscriptionPlan.name}</strong> plan.
+              <strong>{ subscriptionPlan?.name}</strong> plan.
             </CardDescription>
           </CardHeader>
 
