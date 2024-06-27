@@ -1,19 +1,14 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
+import { cn, constructMetadata } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import Providers from "@/components/Providers";
- import "react-loading-skeleton/dist/skeleton.css";
+import "react-loading-skeleton/dist/skeleton.css";
 import { Toaster } from "@/components/ui/toaster";
 import "simplebar-react/dist/simplebar.min.css";
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "PDFPal",
-  description:
-    "PDFPal: Your AI companion for effortless PDF comprehension. Upload your PDFs, and let our AI chatbot explain the content to you in plain language, making complex text accessible and understandable.",
-};
+export const metadata =constructMetadata()
 
 export default function RootLayout({
   children,

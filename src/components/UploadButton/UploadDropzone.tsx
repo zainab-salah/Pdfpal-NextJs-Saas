@@ -3,17 +3,18 @@ import { useState } from "react";
 import Dropzone from "react-dropzone";
 import { Progress } from "../ui/progress";
 import { useToast } from "../ui/use-toast";
- 
+
 import { trpc } from "@/app/_trpc/client";
 import { useRouter } from "next/navigation";
 import { useUploadThing } from "@/lib/uploadthing";
- 
 
-const UploadDropzone = () => {
+const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   const router = useRouter();
-  const { startUpload } = useUploadThing("fileUploader");
+  const { startUpload } = useUploadThing(
+    !isSubscribed ? "freePlaneUploadr" : "proPlaneUploadr"
+  );
 
   const { toast } = useToast();
 
@@ -101,8 +102,7 @@ const UploadDropzone = () => {
                     drag and drop
                   </p>
                   <p className="text-xs text-zinc-500">
-                    PDF (up to 4MB)
-                    {/* PDF (up to {isSubscribed ? "16" : "4"}MB) */}
+                    PDF (up to {isSubscribed ? "16" : "4"}MB)
                   </p>
                 </div>
 
