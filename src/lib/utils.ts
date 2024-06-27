@@ -46,7 +46,7 @@ export function constructMetadata({
     },
     icons,
     metadataBase: new URL("https://pdfpal-next-js.vercel.app/"),
-    themeColor: "#FFF",
+
     ...(noIndex && {
       robots: {
         index: false,
