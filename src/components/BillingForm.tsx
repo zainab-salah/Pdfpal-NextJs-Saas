@@ -16,7 +16,7 @@ import { Loader2 } from "lucide-react";
 import { format } from "date-fns";
 
 interface BillingFormProps {
-  subscriptionPlan: Awaited<ReturnType<typeof getUserSubscriptionPlan>>;
+  subscriptionPlan: Awaited<ReturnType<typeof getUserSubscriptionPlan>>
 }
 
 const BillingForm = ({ subscriptionPlan }: BillingFormProps) => {
@@ -49,7 +49,7 @@ const BillingForm = ({ subscriptionPlan }: BillingFormProps) => {
           <CardHeader>
             <CardTitle>Subscription Plan</CardTitle>
             <CardDescription>
-              You are currently on the <strong>{subscriptionPlan?.name}</strong>{" "}
+              You are currently on the <strong>{subscriptionPlan.name}</strong>{" "}
               plan.
             </CardDescription>
           </CardHeader>
