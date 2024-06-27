@@ -16,24 +16,24 @@ const Message = forwardRef<HTMLDivElement, MessageProps>(
     return (
       <div
         ref={ref}
-        className={cn('flex items-end', {
+        className={cn('flex  items-end', {
           'justify-end': message.isUserMessage,
         })}>
         <div
           className={cn(
-            'relative flex h-6 w-6 aspect-square items-center justify-center',
+            'relative flex h-6 w-6 aspect-square  items-center justify-center',
             {
-              'order-2 bg-blue-600 rounded-sm':
+              'order-2 border border-blue-500  rounded-full':
                 message.isUserMessage,
-              'order-1 bg-zinc-800 rounded-sm':
+              'order-1 border border-green-500  rounded-full':
                 !message.isUserMessage,
               invisible: isNextMessageSamePerson,
             }
           )}>
           {message.isUserMessage ? (
-            <Icons.user className='fill-zinc-200 text-zinc-200 h-3/4 w-3/4' />
+            <Icons.user className='fill-blue-400 text-blue-400 h-3/4 w-3/4' />
           ) : (
-            <Icons.logo className='fill-zinc-300 h-3/4 w-3/4' />
+            <Icons.logo className='fill-green-500 h-3/4 w-3/4' />
           )}
         </div>
 
@@ -47,7 +47,7 @@ const Message = forwardRef<HTMLDivElement, MessageProps>(
           )}>
           <div
             className={cn(
-              'px-4 py-2 rounded-lg inline-block',
+              'px-4 py-2 rounded-3xl inline-block',
               {
                 'bg-blue-600 text-white':
                   message.isUserMessage,
